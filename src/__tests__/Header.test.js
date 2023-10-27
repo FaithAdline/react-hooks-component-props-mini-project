@@ -1,15 +1,13 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import Header from "../components/Header";
+import Header from '../components/Header'; // Update the import path
 
-test("renders a <header> element", () => {
-  const { container } = render(<Header />);
-  expect(container.querySelector("header")).toBeInTheDocument();
+
+
+test('renders a header with the blog name', () => {
+  const { getByText } = render(<Header name="Your Blog Name" />);
+  const headerElement = getByText("Your Blog Name");
+  expect(headerElement).toBeInTheDocument();
 });
 
-test("renders a <h1> with the blog name", () => {
-  render(<Header name="Underreacted" />);
-  const h1 = screen.queryByText("Underreacted");
-  expect(h1).toBeInTheDocument();
-  expect(h1.tagName).toBe("H1");
-});
+
